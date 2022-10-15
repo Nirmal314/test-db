@@ -9,6 +9,7 @@ function register1({ hideSidebar, host, proto }) {
       router.push("/");
     }
   }, []);
+
   const [name, setname] = useState("");
   const [password, setpassword] = useState("");
   const [passwordc, setpasswordc] = useState("");
@@ -77,7 +78,7 @@ function register1({ hideSidebar, host, proto }) {
       // });
       const h = proto + host + "/api/signup";
       console.log(h);
-      console.log(typeof h, typeof String(h))
+      console.log(typeof h, typeof String(h));
       let res = await fetch(String(h), {
         method: "POST",
         headers: {
@@ -109,9 +110,9 @@ function register1({ hideSidebar, host, proto }) {
         draggable: true,
         progress: undefined,
       });
-    //   setTimeout(() => {
-    //     router.push("/login");
-    //   }, "1200");
+      //   setTimeout(() => {
+      //     router.push("/login");
+      //   }, "1200");
     }
   }
 
