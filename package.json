@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "crypto-js": "^4.1.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.6.5",
     "next": "12.3.1",
