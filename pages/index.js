@@ -1,35 +1,11 @@
-import User from "../models/User";
-import mongoose from "mongoose";
+import React from 'react'
 
-export default function Home({ users }) {
+function Home() {
   return (
-    <>
-      <div className="flex flex-col w-full h-screen justify-center items-center">
-        {users.map((user, i) => (
-          <p key={i} className="text-2xl">
-            {user.name}
-          </p>
-        ))}
-      </div>
-    </>
-  );
+    <div className="flex justify-center items-center w-full h-screen">
+      <p className="text-4xl">HOME PAGE!</p>
+    </div>
+  )
 }
-// {user.name}
-// {user.email}
-// {user.gender}
-// {user.income}
-// {user.age}
-// {user.marital}
-// {user.cast}
-// {user.education}
-export async function getServerSideProps() {
-  if (!mongoose.connections[0].readyState) {
-    await mongoose.connect(process.env.MONGO_URI);
-  }
-  const users = await User.find();
-  return {
-    props: {
-      users: JSON.parse(JSON.stringify(users)),
-    },
-  };
-}
+
+export default Home
