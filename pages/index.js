@@ -1,6 +1,6 @@
+import { useEffect } from "react";
 
-
-export default function Home2() {
+function Home2() {
   return (
     <>
       <div className="nav:hidden mobile:hidden">
@@ -53,7 +53,10 @@ export default function Home2() {
                 <div className="text-2xl font-normal">
                   Scheme name [this bracket is just to increase length of line]
                 </div>
-                <a href="https://www.google.com" className="text-blue-700 text-lg">
+                <a
+                  href="https://www.google.com"
+                  className="text-blue-700 text-lg"
+                >
                   https://www.google.com
                 </a>
               </div>
@@ -61,7 +64,10 @@ export default function Home2() {
                 <div className="text-2xl font-normal">
                   Scheme name [this bracket is just to increase length of line]
                 </div>
-                <a href="https://www.google.com" className="text-blue-700 text-lg">
+                <a
+                  href="https://www.google.com"
+                  className="text-blue-700 text-lg"
+                >
                   https://www.google.com
                 </a>
               </div>
@@ -69,7 +75,10 @@ export default function Home2() {
                 <div className="text-2xl font-normal">
                   Scheme name [this bracket is just to increase length of line]
                 </div>
-                <a href="https://www.google.com" className="text-blue-700 text-lg">
+                <a
+                  href="https://www.google.com"
+                  className="text-blue-700 text-lg"
+                >
                   https://www.google.com
                 </a>
               </div>
@@ -77,7 +86,10 @@ export default function Home2() {
                 <div className="text-2xl font-normal">
                   Scheme name [this bracket is just to increase length of line]
                 </div>
-                <a href="https://www.google.com" className="text-blue-700 text-lg">
+                <a
+                  href="https://www.google.com"
+                  className="text-blue-700 text-lg"
+                >
                   https://www.google.com
                 </a>
               </div>
@@ -143,3 +155,271 @@ export default function Home2() {
     </>
   );
 }
+
+function newHome() {
+  function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+ }
+  async function trans() {
+    // let count = 0;
+    const card1 = document.getElementById("card1");
+    const card2 = document.getElementById("card2");
+    const card3 = document.getElementById("card3");
+
+    while (true) {
+      for (let i = 0; i < 3; i = (i + 1) % 3) {
+        if (i == 0) {
+          await sleep(4000)
+          try {
+            card3.style.opacity = 0;
+            card1.style.opacity = 1;
+          } catch (error) {
+            return
+          }
+        } else if (i == 1) {
+          await sleep(4000)
+          try {
+            card1.style.opacity = 0;
+            card2.style.opacity = 1;
+          } catch (error) {
+            return
+          }
+        } else {
+          // card2.style.transform = "translateX(100%)";
+          await sleep(4000)
+          try {
+            card2.style.opacity = 0;
+            card3.style.opacity = 1;
+          } catch (error) {
+            return
+          }
+        }
+      }
+    }
+  }
+  trans()
+  function clearInput() {
+    setTimeout(() => {
+      document.getElementById("search").value = "";
+    }, 5000);
+  }
+  function startDictation() {
+    if (window.hasOwnProperty("webkitSpeechRecognition")) {
+      var recognition = new webkitSpeechRecognition();
+      recognition.continuous = false;
+      recognition.interimResults = false;
+      recognition.lang = "en-US";
+      recognition.start();
+      setTimeout(() => {
+        document.getElementById("listening").style.display = "flex";
+      }, 750);
+      recognition.onresult = function (e) {
+        document.getElementById("search").value = e.results[0][0].transcript;
+        recognition.stop();
+        document.getElementById("listening").style.display = "none";
+        console.log("yay");
+        // document.getElementById('voice_form').submit();
+      };
+    } else {
+      alert("voice recognition is not supported");
+    }
+  }
+  return (
+    <div className="w-full overflow-hidden h-screen fixed">
+      <form
+        className="flex justify-between items-center ml-10 w-full mt-[23vh] mb-32 h-auto"
+        method="post"
+        id="voice_form"
+      >
+        <div className="flex flex-col">
+          <div className="w-3/4">
+            <p className="nav:text-lg text-3xl mb-4 font-semibold text-left w-3/4">
+              You can use Akam to learn about Gujarat government schemes for
+              which you qualify, also gives you a list of all government
+              initiatives that are being hurried.
+            </p>
+          </div>
+          <div className="flex items-center w-3/4">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="1.5"
+              stroke="currentColor"
+              className="w-6 h-6 ml-2 text-white absolute"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+              />
+            </svg>
+            <input
+              type="text"
+              id="search"
+              className="bg-gray-700 border w-3/4 border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 text-white"
+              placeholder="Type here"
+              required
+              name="search"
+            />
+            <button
+              onClick={clearInput}
+              type="submit"
+              className="inline-flex transition-all items-center py-2.5 px-6 ml-2 text-sm font-semibold text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            >
+              Search
+            </button>
+            <button
+              onClick={startDictation}
+              className="inline-flex transition-all items-center px-2.5 py-2 ml-2 text-sm font-semibold text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className="w-6 h-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z"
+                />
+              </svg>
+            </button>
+          </div>
+          <div className="mt-6">
+            <p
+              id="listening"
+              className="text-3xl hidden font-medium text-blue-600"
+            >
+              Listening...
+            </p>
+          </div>
+        </div>
+        <div className="flex -ml-28 flex-col justify-center w-full p-5">
+          <div
+            id="card1"
+            className="absolute opacity-0 transition-all duration-[1000ms] max-w-md rounded-3xl border border-gray-200 shadow-md bg-gray-700"
+          >
+            <div className="p-5">
+              <div className="text-lg text-white font-semibold">
+                card 1 : Lorem ipsum dolor sit, amet consectetur adipisicing
+                elit. Perspiciatis, autem.
+              </div>
+              <div className="mt-4">
+                <a href="https://www.google.com">
+                  <div className="inline-flex transition-all items-center py-2.5 px-6 ml-2 text-sm font-semibold text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    View more
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div
+            id="card2"
+            className="absolute opacity-0 transition-all duration-[1000ms] max-w-md rounded-3xl border border-gray-200 shadow-md bg-gray-700"
+          >
+            <div className="p-5">
+              <div className="text-lg text-white font-semibold">
+                card 2 : Lorem ipsum dolor sit, amet consectetur adipisicing
+                elit
+              </div>
+              <div className="mt-4">
+                <a href="https://www.google.com">
+                  <div className="inline-flex transition-all items-center py-2.5 px-6 ml-2 text-sm font-semibold text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    View more
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div
+            id="card3"
+            className="absolute opacity-0 transition-all duration-[1000ms] max-w-md rounded-3xl border border-gray-200 shadow-md bg-gray-700"
+          >
+            <div className="p-5">
+              <div className="text-lg text-white font-semibold">
+                card 3 : Lorem ipsum dolor sit
+              </div>
+              <div className="mt-4">
+                <a href="https://www.google.com">
+                  <div className="inline-flex transition-all items-center py-2.5 px-6 ml-2 text-sm font-semibold text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    View more
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <div className="ml-12 mb-6">
+        <p className="text-3xl font-semibold text-gray-800">
+          Browse schemes by catagories:
+        </p>
+      </div>
+      <div className="ml-10 mb-24 mt-18 flex w-full justify-start space-x-16">
+        <div className="max-w-[15rem] rounded-3xl border border-gray-200 shadow-md bg-gray-700">
+          <div className="p-5">
+            <a href="schemes/agriculture/" name="agriculture">
+              <h5 className="mb-2 text-xl font-bold tracking-tight text-white">
+                Agriculture
+              </h5>
+            </a>
+            <p className="mb-3 text-md font-normal text-gray-400">
+              All the schemes related to Agricluture.
+            </p>
+          </div>
+        </div>
+        <div className="max-w-[15rem] rounded-3xl border border-gray-200 shadow-md bg-gray-700">
+          <div className="p-5">
+            <a href="schemes/education/" name="education">
+              <h5 className="mb-2 text-xl font-bold tracking-tight text-white">
+                Education
+              </h5>
+            </a>
+            <p className="mb-3 text-md font-normal text-gray-400">
+              All the schemes related to Education.
+            </p>
+          </div>
+        </div>
+        <div className="max-w-[15rem] rounded-3xl border border-gray-200 shadow-md bg-gray-700">
+          <div className="p-5">
+            <a href="schemes/startup/" name="startup">
+              <h5 className="mb-2 text-xl font-semibold tracking-tight text-white">
+                Startup
+              </h5>
+            </a>
+            <p className="mb-3 text-md font-normal text-gray-400">
+              All the schemes related to Startup.
+            </p>
+          </div>
+        </div>
+        <div className="max-w-[15rem] rounded-3xl border border-gray-200 shadow-md bg-gray-700">
+          <div className="p-5">
+            <a href="schemes/other/" name="other">
+              <h5 className="mb-2 text-xl font-extrabold tracking-tight text-white">
+                Others
+              </h5>
+            </a>
+            <p className="mb-3 text-md font-normal text-gray-400">
+              All the schemes related to others.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div className="w-full absolute bottom-0 bg-gray-700 py-1 px-0.5">
+        <marquee
+          behavior="scroll"
+          scrollamount="9"
+          className="text-md font-medium text-white"
+        >
+          MYSY scheme is ending on date 00/00/0000.
+        </marquee>
+      </div>
+    </div>
+  );
+}
+export default newHome;
+// export default Home2;

@@ -19,6 +19,28 @@ function MyApp({ Component, pageProps, pp }) {
   const [key, setKey] = useState(0);
   const [isHidden, setIsHidden] = useState(true);
 
+  // const googleTranslateElementInit = () => {
+  //   new window.google.translate.TranslateElement(
+  //     {
+  //       pageLanguage: "en",
+  //       includedLanguages: "en,gu,hi,ta,mr", // include this for selected languages
+  //       layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL,
+  //       crossDomain:true
+  //     },
+  //     "google_translate_element"
+  //   );
+  // };
+
+  // useEffect(() => {
+  //   var addScript = document.createElement("script");
+  //   addScript.setAttribute(
+  //     "src",
+  //     "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+  //   );
+  //   document.body.appendChild(addScript);
+  //   window.googleTranslateElementInit = googleTranslateElementInit;
+  // }, []);
+
   useEffect(() => {
     router.events.on("routeChangeStart", () => {
       hideSidebar();
@@ -115,23 +137,6 @@ function MyApp({ Component, pageProps, pp }) {
                 </Link>
               </div>
             )}
-            <div className="mobile:text-sm rounded-md w-full flex justify-center items-center text-white border-none font-normal text-base px-4 mobile:py-4 nav:py-2">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={"1.5"}
-                stroke="currentColor"
-                className="w-6 h-6"
-              >
-                <path
-                  strokeLinecap={"round"}
-                  strokeLinejoin={"round"}
-                  d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z"
-                />
-              </svg>
-              <p className="cursor-pointer">Read out</p>
-            </div>
           </div>
         </div>
 
@@ -171,6 +176,7 @@ function MyApp({ Component, pageProps, pp }) {
                 )}
               </div>
             </div>
+            {/* <div id="google_translate_element"></div>    */}
           </div>
         </div>
 
