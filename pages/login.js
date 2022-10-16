@@ -118,7 +118,7 @@ function login1({ hideSidebar, host, proto }) {
                   htmlFor="email"
                   className="block mb-2 text-md font-normal text-black"
                 >
-                  Username
+                  Email
                 </label>
                 <input
                   value={email}
