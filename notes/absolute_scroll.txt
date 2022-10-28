@@ -1,0 +1,7 @@
+for using position: absolute and enable scrolling too for that absolute div.. make a relative div with overflow auto and as a child put the absolute class 
+
+example : 
+
+<div class="relative overflow-auto">
+    <div class="absolute"></div>
+</div>

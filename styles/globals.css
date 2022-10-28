@@ -15,8 +15,8 @@ body {
   background: url("../public/finalbg.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
+  background-size: cover
 }
-
 @layer base {
   html {
     @apply scroll-smooth m-0 p-0;

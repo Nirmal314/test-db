@@ -24,7 +24,7 @@ function MyApp({ Component, pageProps, pp }) {
   //     {
   //       pageLanguage: "en",
   //       includedLanguages: "en,gu,hi,ta,mr", // include this for selected languages
-  //       layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL,
+  //       // layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL,
   //       crossDomain:true
   //     },
   //     "google_translate_element"
@@ -176,7 +176,7 @@ function MyApp({ Component, pageProps, pp }) {
                 )}
               </div>
             </div>
-            {/* <div id="google_translate_element"></div>    */}
+            {/* <div id="google_translate_element"></div> */}
           </div>
         </div>
 

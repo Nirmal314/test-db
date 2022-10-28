@@ -188,6 +188,7 @@ function login1({ hideSidebar, host, proto }) {
 }
 
 export default login1;
+
 export async function getServerSideProps({ req, res }) {
   const proto =
     req.headers["x-forwarded-proto"] || req.connection.encrypted
