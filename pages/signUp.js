@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-function register1({ hideSidebar, host, proto }) {
+function register({ hideSidebar, host, proto }) {
   useEffect(() => {
     if (localStorage.getItem("token")) {
       router.push("/");
@@ -137,7 +137,7 @@ function register1({ hideSidebar, host, proto }) {
           className="bg-gradient-to-br from-[rgba(255,153,51,1)] via-white to-[rgba(19,136,8,1)]"
           onClick={hideSidebar}
         >
-          <div className="flex flex-col items-center mt-0.25 justify-center h-screen nav:h-fit mobile:h-fit">
+          <div className="flex flex-col items-center justify-center h-screen nav:h-fit mobile:h-fit">
             <p className="flex w-full justify-center mt-6 items-center mb-4 text-4xl text-black font-medium">
               Create new account
             </p>
@@ -348,7 +348,108 @@ function register1({ hideSidebar, host, proto }) {
   );
 }
 
-export default register1;
+function register1() {
+  return (
+    <section
+      className="bg-gradient-to-br from-[rgba(255,153,51,1)] via-white to-[rgba(19,136,8,1)]"
+    >
+      <ToastContainer
+        position="bottom-center"
+        autoClose={5000}
+        hideProgressBar={true}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto h-screen">
+        <p className="flex items-center mb-4 text-4xl text-black font-medium">
+          Welcome back!
+        </p>
+        <div className="flex">
+          <p className="flex items-center mb-6 mr-2 text-md text-black font-normal">
+            Don't have an account yet?
+          </p>
+          <div onClick={() => router.push("/signUp")}>
+            <p className="flex cursor-pointer items-center mb-6 underline text-md text-blue-800 font-normal">
+              Sign up
+            </p>
+          </div>
+        </div>
+        <div className="w-full bg-trasparent max-w-md">
+          <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+            <form className="space-y-4 md:space-y-6">
+              <div>
+                <label
+                  htmlFor="email"
+                  className="block mb-2 text-md font-normal text-black"
+                >
+                  Email
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  className="bg-gray-600 border-2 border-gray-700 text-gray-50 rounded-lg focus:ring-primary-600 block w-full p-2.5 "
+                  required=""
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="password"
+                  className="block mb-2 text-md font-normal text-black"
+                >
+                  Password
+                </label>
+                <input
+                  type="password"
+                  name="password"
+                  id="password"
+                  className="bg-gray-600 border-2 border-gray-700 text-gray-50 rounded-lg focus:ring-primary-600 block w-full p-2.5 "
+                  required=""
+                />
+              </div>
+              <div className="flex items-center justify-between">
+                <div className="flex items-start">
+                  <div className="flex items-center h-5">
+                    <input
+                      id="remember"
+                      aria-describedby="remember"
+                      type="checkbox"
+                      className="w-4 h-4 border-2 border-gray-700 rounded bg-gray-600 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
+                      required=""
+                    />
+                  </div>
+                  <div className="ml-3 text-sm mobile:text-xs mobile:ml-2">
+                    <label htmlFor="remember" className="text-black">
+                      Keep me logged in
+                    </label>
+                  </div>
+                </div>
+                <a
+                  href="#"
+                  className="text-sm mobile:text-xs font-normal text-blue-800 underline"
+                >
+                  Forgot password?
+                </a>
+              </div>
+              <button
+                type="submit"
+                className="w-full text-gray-50 bg-[#4c6fc0] focus:ring-4 focus:outline-none font-semibold rounded-lg text-lg px-5 py-2.5 text-center"
+              >
+                Login
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+export default register;
+// export default register1;
 export async function getServerSideProps({ req, res }) {
   const proto =
     req.headers["x-forwarded-proto"] || req.connection.encrypted

@@ -11,21 +11,15 @@
   font-family: "Roboto", sans-serif;
 }
 
-body {
-  background: url("../public/finalbg.jpg");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover
-}
 @layer base {
   html {
     @apply scroll-smooth m-0 p-0;
   }
   body {
-    @apply bg-white text-black h-[100vh] w-full mobile:overflow-y-auto nav:overflow-y-auto pc:overflow-y-auto;
+    @apply bg-fixed bg-no-repeat bg-cover;
+    background-image: url(../public/finalbg.jpg);
   }
 }
-
 @layer components {
   .whitesearchicon {
     /* @apply bg-[url('../public/image.png')] bg-no-repeat bg-scroll */

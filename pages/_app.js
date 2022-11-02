@@ -80,7 +80,7 @@ function MyApp({ Component, pageProps, pp }) {
   return (
     <>
       <Head>
-        <title>AKAM</title>
+        <title>Innovators</title>
       </Head>
       <ToastContainer
         position="top-center"
